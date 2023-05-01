@@ -1,0 +1,26 @@
+br
+br
+h3 Products
+    if products && products.length > 0
+        div(class='table-responsive')
+            table.table.table-dark.my-4
+                tr(style='color: green;')
+                    th Nombre
+                    th Descripcion
+                    th Codigo
+                    th Precio
+                    th Stock
+                    th Foto
+                each val in products
+                    tr
+                        td= val.name
+                        td= val.description
+                        td= val.code
+                        td= val.price
+                        td= val.stock
+                        td= val.photo
+                        td
+                            form(onsubmit=`return SendToCart('${val._id}')`)
+                                button(type='submit') Take to Cart
+    else
+        h3(class='alert alert-danger') No products

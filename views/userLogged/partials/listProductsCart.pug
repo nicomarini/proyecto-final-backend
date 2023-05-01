@@ -1,0 +1,33 @@
+br
+br
+h3 Cart
+    if obtain && obtain.products.length > 0
+        div(class='table-responsive')
+            table.table.table-dark.my-4
+                tr(style='color: green;')
+                    th Nombre
+                    th Descripcion
+                    th Codigo
+                    th Precio
+                    th Stock
+                    th Foto
+                each val in obtain.products
+                    tr
+                        td= val.name
+                        td= val.description
+                        td= val.code
+                        td= val.price
+                        td= val.stock
+                        td= val.photo
+                        td 
+                            form(onsubmit=`return DeleteProduct('${val._id}')`)
+                                button.btn.btn-danger.btn-sm(type='submit') Eliminar Producto
+        .d-flex.justify-content-center
+            form(onsubmit=`return DeleteCart()`)
+                button.btn.btn-danger.btn-sm(type='submit') Eliminar Cart
+            form(action='/buy', method='post')
+                button.btn.btn-success.btn-sm.mx-3(type='submit') Compar 
+                            
+    else
+        h3(class='alert alert-danger') No products
+        a.nav-link(href='/products') Añadir Productos
